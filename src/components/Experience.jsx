@@ -51,6 +51,9 @@ export default function Experience() {
   const typeLabel = (type) => {
     if (type === 'dev') return '💻 Dev'
     if (type === 'marketing') return '📣 Marketing'
+    if (type === 'fotografia') return '📸 Fotografía'
+    if (type === 'diseno') return '🎨 Diseño'
+    if (type === 'naci') return '👶'
     return '🎮 Hybrid'
   }
 

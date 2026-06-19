@@ -9,6 +9,7 @@
   --bg-card: #1a1a1a;
   --bg-card-hover: #222222;
   --text-primary: #ffffff;
+  --font-footer: #ffffff;
   --text-secondary: #a0a0a0;
   --text-muted: #606060;
   --accent: #00d4ff;
@@ -18,7 +19,7 @@
   --linkedin-hover: #005f94;
   --whatsapp: #25d366;
   --whatsapp-hover: #1da851;
-  --border: rgba(255, 255, 255, 0)
+  --border: #fff;
   --border-hover: rgba(255, 255, 255, 0.2);
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -40,6 +41,7 @@
   --bg-primary: #5c94fc;
   --bg-secondary: #5c94fc;
   --bg-card: #ffffff;
+  --font-footer: #ffffff;
   --bg-card-hover: #f0f3f8;
   --text-primary: #111827;
   --text-secondary: #111827;
@@ -81,8 +83,8 @@
 }
 
 [data-theme="light"] .footer {
-  background: var(--bg-secondary);
-  border-top-color: var(--border);
+  background: url(/images/brickBlack.jpg);
+  background-size: 50px;
 }
 
 [data-theme="light"] .experience__outer .gradient-overlay-wrapper::before {

@@ -3,7 +3,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #0a0a0a;
+  background: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,21 +18,9 @@
 }
 
 /* SVG */
-.loader-svg {
-  width: clamp(100px, 20vw, 160px);
-  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.5));
-}
 
-/* Shared path styles */
-.loader-path {
-  stroke: #00d4ff;
-  stroke-width: 3.5;
-  fill: none;
-  /* Draw-in animation via stroke-dashoffset */
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: drawPath 0.5s ease forwards;
-}
+
+
 
 .loader-path--cross {
   animation-duration: 0.3s;

@@ -4,7 +4,7 @@ import './About.css'
 const SKILLS = [
   'VTEX IO', 'React JS', 'HTML5', 'CSS3 / SCSS',
   'JavaScript', 'GitHub', 'Photoshop', 'JIRA',
-  'Community Management', 'Content Creation', 'TCG Strategy',
+  'Handlebars', 'TCG Strategy',
 ]
 
 export default function About() {
@@ -51,16 +51,18 @@ export default function About() {
           </h2>
 
           <p className="about__bio">
-            Soy un <strong>Front End Developer</strong> con experiencia en desarrollo de
-            tiendas e-commerce con VTEX IO y React JS. Me apasiona construir interfaces
-            que combinen un diseño atractivo con una experiencia de usuario fluida.
+            Mi misión principal en el mundo tech es rescatar a grandes marcas nacionales e internacionales del "lado oscuro" de las webs lentas. Me especializo en el ecosistema VTEX IO, construyendo e-commerce robustos que no solo se ven increíbles, sino que cargan a la velocidad de la luz.
           </p>
 
           <p className="about__bio">
-            Además del código, soy <strong>Community Manager</strong> y jugador
-            competitivo de TCG. Esa combinación me da una perspectiva única: entiendo
-            tanto la parte técnica como la comunicación con la comunidad y la estrategia
-            de contenido para marcas digitales.
+            Mi superpoder es <strong>resolver problemas de forma rápida y efectiva.</strong> Me enfoco en la psicología del usuario, el performance y el SEO, asegurándome de que cada propuesta que pongo sobre la mesa no solo cumpla con el diseño, sino que optimice el tiempo y los resultados del negocio. Me encanta proponer, innovar y construir soluciones reales que a la gente le sirvan en su día a día.
+          </p>
+
+          <p className="about__bio">
+            <strong>Datos curiosos sobre mí:</strong><br></br>
+            <p>El café y la música son el combustible de mi código.</p>
+            <p>A veces juego videojuegos</p>
+            <p>Soy tan fan de Star Wars que organizo actividades y creo contenido para la comunidad del TCG Star Wars: Unlimited.</p>
           </p>
 
           {/* Skills */}

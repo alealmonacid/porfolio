@@ -94,14 +94,12 @@
 /* Decorative accent line */
 .about__image-deco {
   position: absolute;
-  bottom: -16px;
+  bottom: -26px;
   left: -16px;
   width: 60%;
   height: 60%;
   border-bottom: 2px solid var(--accent);
   border-left: 2px solid var(--accent);
-  border-radius: 0 0 0 var(--radius-md);
-  opacity: 0.3;
   pointer-events: none;
 }
 

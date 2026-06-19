@@ -12,13 +12,8 @@
               box-shadow 0.4s ease;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  background: rgba(14, 14, 14, 0.88);
-  border-bottom: 1px solid var(--border);
 }
 
-[data-theme="light"] .navbar {
-  background: rgba(244, 246, 249, 0.9);
-}
 
 .navbar--visible {
   transform: translateY(0);
@@ -189,18 +184,14 @@
 /* Mobile menu */
 .navbar__mobile-menu {
   display: none;
-  background: rgba(14, 14, 14, 0.98);
   backdrop-filter: blur(20px);
-  border-top: 1px solid var(--border);
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Light theme mobile menu */
-[data-theme="light"] .navbar__mobile-menu {
-  background: rgba(244, 246, 249, 0.98);
-}
+
 
 .navbar__mobile-menu--open {
   max-height: 600px;

@@ -91,6 +91,9 @@ export default function Contact() {
   }
 
   return (
+    <div className="block">
+      <div className='blockSeparator'></div>
+      <div className='blockSeparatorBlack'></div>
     <section
       id="hablemos"
       className="contact section-wrapper reveal-section"
@@ -262,5 +265,6 @@ export default function Contact() {
         </form>
       </div>
     </section>
+    </div>
   )
 }

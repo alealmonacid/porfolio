@@ -1,27 +1,27 @@
 [
   {
     "id": 1,
-    "year": "2019",
-    "title": "Community Manager",
-    "company": "Freelance",
-    "type": "marketing",
-    "description": "Gestión y crecimiento de comunidades online para marcas del sector gaming, entretenimiento y tecnología. Creación de contenido, estrategia de redes sociales y análisis de métricas."
+    "year": "1993",
+    "title": "HOLA MUNDO",
+    "company": "",
+    "type": "naci",
+    "description": "En una comuna muy, muy lejana, nace una nueva esperanza lista para traer el equilibrio a la Fuerza..."
   },
   {
     "id": 2,
-    "year": "2021",
-    "title": "Front End Developer Jr.",
-    "company": "Agencia Digital",
-    "type": "dev",
-    "description": "Primer rol formal como desarrollador web. Maquetación de interfaces con HTML5, CSS3 y JavaScript vanilla. Introducción a React JS y metodologías de trabajo en equipo."
+    "year": "2005",
+    "title": "Fotografo VTR Curicó - Prensa",
+    "company": "Freelance",
+    "type": "fotografia",
+    "description": "A los 12 años ya estaba detrás de las cámaras apoyando en el programa de TV 'Curicó Unido en el Corazón'. Esa temprana curiosidad por la fotografía evolucionó en lo que soy hoy: un desarrollador front-end con un ojo afilado para el diseño, el rendimiento y la experiencia del usuario."
   },
   {
     "id": 3,
-    "year": "2022",
-    "title": "Front End Developer",
-    "company": "E-Commerce Solutions",
-    "type": "dev",
-    "description": "Desarrollo e implementación de tiendas online en VTEX IO con componentes personalizados en React. Uso de SCSS, GitHub y JIRA para gestión de proyectos ágiles."
+    "year": "2008",
+    "title": "Diseñador",
+    "company": "Freelance",
+    "type": "diseno",
+    "description": "A los 15 años decidí dar el siguiente paso y aprendí Photoshop para editar mis fotos, pero terminé descubriendo el mundo del diseño. Así fue como empecé a crear afiches para pequeños negocios y piezas para proyectos personales. Sin saberlo, ahí nació mi fascinación por resolver problemas visuales y ayudar a los negocios a verse bien; algo que hoy aplico directamente en la arquitectura de e-commerce."
   },
   {
     "id": 4,
