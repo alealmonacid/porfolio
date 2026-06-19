@@ -1,7 +1,6 @@
 /* ===== TECH STACK ===== */
 .techstack {
   padding: var(--section-padding);
-  background: var(--bg-primary);
   /* Must be above the GSAP-pinned experience section (z-index: 1) */
   position: relative;
   z-index: 2;

@@ -1,6 +1,5 @@
 /* ===== BLOG SLIDER ===== */
 .blog {
-  background: var(--bg-secondary);
   padding: var(--section-padding);
 }
 

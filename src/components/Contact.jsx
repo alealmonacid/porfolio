@@ -96,7 +96,7 @@ export default function Contact() {
       <div className='blockSeparatorBlack'></div>
     <section
       id="hablemos"
-      className="contact section-wrapper reveal-section"
+      className="contact section-wrapper"
       aria-label="Sección de contacto"
     >
       {/* Full-bleed background decorations */}

@@ -4,8 +4,6 @@
   overflow: hidden;
   position: relative;
   z-index: 1;
-  /* base stacking context */
-  background: var(--bg-primary);
 }
 
 .experience .section-title {
