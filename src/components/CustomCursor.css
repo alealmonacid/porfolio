@@ -1,0 +1,48 @@
+/* ===== CUSTOM CURSOR ===== */
+
+/* Inner dot — follows instantly */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  /* mix-blend-mode makes it visible on any bg color */
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+/* Outer ring — follows with GSAP lag */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid rgba(0, 212, 255, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+  will-change: transform;
+  transition: border-color 0.3s ease;
+}
+
+/* Light theme — adjust ring color */
+[data-theme="light"] .cursor-ring {
+  border-color: rgba(0, 148, 187, 0.5);
+}
+
+/* Hide on touch / mobile */
+@media (hover: none) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}

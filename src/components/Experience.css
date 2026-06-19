@@ -1,0 +1,289 @@
+/* ===== EXPERIENCE ===== */
+.experience {
+  padding: 80px 0 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  /* base stacking context */
+  background: var(--bg-primary);
+}
+
+.experience .section-title {
+  padding: 0 6%;
+  margin-bottom: 50px;
+}
+
+/* ---- Desktop Horizontal Track ---- */
+.experience__outer {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Fixed height so all items share the same vertical space → dots always on the line */
+.experience__track {
+  display: flex;
+  align-items: stretch;
+  /* items fill full track height */
+  position: relative;
+  width: max-content;
+  padding: 0 10%;
+  height: 480px;
+  /* fixed height — line is always at 240px */
+  will-change: transform;
+  gap: 0;
+}
+
+/* The center horizontal line — always at 50% of 480px = 240px */
+.experience__line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(to right,
+      transparent 0%,
+      rgba(255, 255, 255, 0.12) 6%,
+      rgba(0, 212, 255, 0.45) 30%,
+      rgba(0, 212, 255, 0.55) 50%,
+      rgba(0, 212, 255, 0.45) 70%,
+      rgba(255, 255, 255, 0.12) 94%,
+      transparent 100%);
+  z-index: 0;
+}
+
+/* Each timeline item — full track height, fixed width */
+.experience__item {
+  position: relative;
+  width: 300px;
+  flex-shrink: 0;
+  margin: 0 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Card positioning ---- */
+.experience__card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  padding: 20px;
+  overflow-y: auto;
+  transition: var(--transition);
+  /* Show a subtle thin scrollbar so users know content is scrollable */
+  scrollbar-color: rgb(67, 177, 71) transparent;
+}
+
+.experience__card::-webkit-scrollbar {
+  width: 4px;
+}
+
+.experience__card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.experience__card::-webkit-scrollbar-thumb {
+  background: rgba(67, 177, 71, 0.35);
+  border-radius: 2px;
+}
+
+.experience__card::-webkit-scrollbar-thumb:hover {
+  background: rgba(67, 177, 71, 0.65);
+}
+
+.experience__card:hover {
+  transform: translate(-5px, -5px);
+  box-shadow: 8px 8px 0px 0px var(--border);
+}
+
+/* Top items → card in top half */
+.experience__item--top .experience__card {
+  top: 16px;
+  bottom: calc(50% + 26px);
+  /* stops 26px above center line */
+}
+
+/* Bottom items → card in bottom half */
+.experience__item--bottom .experience__card {
+  top: calc(50% + 26px);
+  /* starts 26px below center line */
+  bottom: 16px;
+}
+
+/* ---- Dot — always at the center of the track ---- */
+.experience__dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: #e6932d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: var(--transition);
+
+}
+
+.experience__item:hover .experience__dot {
+  transform: translate(-12px, -12px);
+  box-shadow: 2px 2px 0 var(--border);
+}
+
+.experience__dot-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Chelsea Market';
+  color: #0000004f;
+}
+
+/* ---- Year label ---- */
+.experience__year {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  z-index: 3;
+}
+
+/* Top items → year just below the dot */
+.experience__item--top .experience__year {
+  top: calc(50% + 14px);
+}
+
+/* Bottom items → year just above the dot */
+.experience__item--bottom .experience__year {
+  bottom: calc(50% + 14px);
+  top: auto;
+}
+
+/* ---- Card content ---- */
+.experience__type-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #000000;
+  background: rgb(158 201 140);
+  padding: 3px 10px;
+  border-radius: 0;
+  display: inline-block;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.experience__title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.experience__company {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+
+.experience__desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ---- Mobile vertical timeline ---- */
+.experience__mobile {
+  display: none;
+  padding: 0 6% 80px;
+  position: relative;
+}
+
+.experience__mobile::before {
+  content: '';
+  position: absolute;
+  left: calc(6% + 20px);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom,
+      transparent,
+      rgba(0, 212, 255, 0.4) 10%,
+      rgba(0, 212, 255, 0.4) 90%,
+      transparent);
+}
+
+.experience__mobile-item {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.experience__mobile-dot {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+  z-index: 1;
+}
+
+.experience__mobile-dot-inner {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.experience__mobile-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.experience__mobile-card .experience__year {
+  position: static;
+  transform: none;
+  display: block;
+  left: auto;
+  top: auto;
+  bottom: auto;
+  margin-bottom: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .experience__outer {
+    display: none;
+  }
+
+  .experience__mobile {
+    display: block;
+  }
+
+  .experience {
+    padding-bottom: 80px;
+  }
+}

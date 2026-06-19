@@ -1,0 +1,5 @@
+/*
+  Netlify _redirects — SPA fallback
+  Allows direct URL access to /blog/slug without 404
+*/
+/* index.html 200

@@ -1,0 +1,246 @@
+/* ============================================
+   GLOBAL STYLES — Alejandro Almonacid Portfolio
+   ============================================ */
+
+/* --- CSS Custom Properties — DARK (default) --- */
+:root {
+  --bg-primary: #0e0e0e;
+  --bg-secondary: #141414;
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #222222;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #606060;
+  --accent: #00d4ff;
+  --accent-dim: rgba(0, 212, 255, 0.15);
+  --accent-glow: rgba(0, 212, 255, 0.4);
+  --linkedin: #0077b5;
+  --linkedin-hover: #005f94;
+  --whatsapp: #25d366;
+  --whatsapp-hover: #1da851;
+  --border: rgba(255, 255, 255, 0)
+  --border-hover: rgba(255, 255, 255, 0.2);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.2);
+  --transition-fast: all 0.5s ease;
+  --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-heading: 'Chelsea Market', system-ui;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --section-padding: 100px 0;
+  --container-width: 1200px;
+  --container-padding: 0 6%;
+}
+
+/* --- CSS Custom Properties — LIGHT --- */
+[data-theme="light"] {
+  --bg-primary: #5c94fc;
+  --bg-secondary: #5c94fc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f3f8;
+  --text-primary: #111827;
+  --text-secondary: #111827;
+  --text-muted: #111827;
+  --accent: #c84c0c;           /* darker for light bg contrast */
+  --accent-dim: rgba(187, 0, 0, 0.1);
+  --accent-glow: rgba(187, 0, 0, 0.35);
+  --border: rgb(0, 0, 0);
+  --border-hover: rgba(0, 0, 0, 0.18);
+  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 40px rgba(0, 148, 187, 0.15);
+}
+
+/* Light theme — component-specific overrides */
+[data-theme="light"] .hero {
+  background: #f4f6f9;
+}
+
+[data-theme="light"] .hero__bg-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+[data-theme="light"] .gradient-overlay-wrapper::before {
+  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
+}
+
+[data-theme="light"] .gradient-overlay-wrapper::after {
+  background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
+}
+
+[data-theme="light"] .blog__slider.gradient-overlay-wrapper::before {
+  background: linear-gradient(to right, var(--bg-secondary) 0%, transparent 100%);
+}
+
+[data-theme="light"] .blog__slider.gradient-overlay-wrapper::after {
+  background: linear-gradient(to left, var(--bg-secondary) 0%, transparent 100%);
+}
+
+[data-theme="light"] .footer {
+  background: var(--bg-secondary);
+  border-top-color: var(--border);
+}
+
+[data-theme="light"] .experience__outer .gradient-overlay-wrapper::before {
+  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hide default cursor when custom cursor is active */
+body.has-custom-cursor,
+body.has-custom-cursor * {
+  cursor: none !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+/* --- Utility Classes --- */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 60px;
+  position: relative;
+  color: var(--text-primary);
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--accent);
+  margin: 14px auto 0;
+  border-radius: 2px;
+}
+
+/* --- Gradient Side Overlay (shared by timeline, carousels) --- */
+.gradient-overlay-wrapper {
+  position: relative;
+}
+
+.gradient-overlay-wrapper::before,
+.gradient-overlay-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.gradient-overlay-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
+}
+
+.gradient-overlay-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
+}
+
+/* For sections with secondary background (Blog) */
+.blog__slider.gradient-overlay-wrapper::before {
+  background: linear-gradient(to right, var(--bg-secondary) 0%, transparent 100%);
+}
+
+.blog__slider.gradient-overlay-wrapper::after {
+  background: linear-gradient(to left, var(--bg-secondary) 0%, transparent 100%);
+}
+
+/* --- Carousel side breathing room --- */
+.projects__slider .swiper,
+.blog__slider .swiper {
+  padding-left: 3% !important;
+  padding-right: 3% !important;
+  overflow: visible !important;
+}
+
+/* --- Section Wrapper --- */
+.section-wrapper {
+  padding: var(--section-padding);
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Animations --- */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #00b8e0; }
+
+/* --- Selection --- */
+::selection {
+  background: var(--accent-dim);
+  color: var(--accent);
+}

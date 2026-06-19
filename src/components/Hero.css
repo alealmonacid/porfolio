@@ -1,0 +1,145 @@
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 8%;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* Background layers */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero__bg-glow {
+  position: absolute;
+  top: 20%;
+  right: 15%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Content — limited to right 55% of screen so it doesn't overflow */
+.hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: right;
+  max-width: 55%;
+  animation: fadeInUp 0.9s ease forwards;
+}
+
+.hero__greeting {
+  font-family: var(--font-heading);
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.hero__name {
+  font-family: var(--font-heading);
+  /* Reduced from 7rem → fits within 55% container without overflow */
+  font-size: clamp(2.2rem, 4.5vw, 5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  word-break: keep-all;
+}
+
+/* Typing role */
+.hero__role {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 2rem;
+  justify-content: flex-end;
+}
+
+.hero__role-text {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero__cursor {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: var(--accent);
+  font-weight: 300;
+  animation: blink 0.8s step-end infinite;
+  margin-left: 2px;
+}
+
+/* Bottom gradient */
+.hero__gradient-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(to bottom, transparent 0%, var(--bg-primary) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero {
+    justify-content: center;
+    padding: 0 6%;
+    padding-top: 80px;
+  }
+
+  .hero__content {
+    text-align: center;
+    max-width: 90%;
+  }
+
+  .hero__role {
+    justify-content: center;
+  }
+
+  .hero__bg-glow {
+    top: 30%;
+    right: 50%;
+    transform: translateX(50%);
+    width: 280px;
+    height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__name {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+}

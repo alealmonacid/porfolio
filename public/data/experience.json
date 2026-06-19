@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "year": "2019",
+    "title": "Community Manager",
+    "company": "Freelance",
+    "type": "marketing",
+    "description": "Gestión y crecimiento de comunidades online para marcas del sector gaming, entretenimiento y tecnología. Creación de contenido, estrategia de redes sociales y análisis de métricas."
+  },
+  {
+    "id": 2,
+    "year": "2021",
+    "title": "Front End Developer Jr.",
+    "company": "Agencia Digital",
+    "type": "dev",
+    "description": "Primer rol formal como desarrollador web. Maquetación de interfaces con HTML5, CSS3 y JavaScript vanilla. Introducción a React JS y metodologías de trabajo en equipo."
+  },
+  {
+    "id": 3,
+    "year": "2022",
+    "title": "Front End Developer",
+    "company": "E-Commerce Solutions",
+    "type": "dev",
+    "description": "Desarrollo e implementación de tiendas online en VTEX IO con componentes personalizados en React. Uso de SCSS, GitHub y JIRA para gestión de proyectos ágiles."
+  },
+  {
+    "id": 4,
+    "year": "2023",
+    "title": "Front End Developer Sr.",
+    "company": "Tech Company",
+    "type": "dev",
+    "description": "Liderazgo técnico en proyectos de e-commerce de alto tráfico. Optimización de performance, experiencia de usuario y mentoring a desarrolladores junior."
+  },
+  {
+    "id": 5,
+    "year": "2024",
+    "title": "Front End Developer & TCG Content Creator",
+    "company": "Freelance & Streaming",
+    "type": "hybrid",
+    "description": "Proyectos freelance de desarrollo web combinados con creación de contenido para la comunidad de TCG. Streaming, vídeos y gestión de comunidades apasionadas."
+  }
+]

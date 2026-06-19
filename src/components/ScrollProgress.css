@@ -1,0 +1,23 @@
+/* ===== SCROLL PROGRESS BAR ===== */
+.scroll-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 10000;
+  background: transparent;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    rgba(0, 212, 255, 0.7) 100%
+  );
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 8px var(--accent-glow);
+  transition: width 0.05s linear;
+}

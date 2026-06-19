@@ -1,0 +1,61 @@
+/* ===== LOADER ===== */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* SVG */
+.loader-svg {
+  width: clamp(100px, 20vw, 160px);
+  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.5));
+}
+
+/* Shared path styles */
+.loader-path {
+  stroke: #00d4ff;
+  stroke-width: 3.5;
+  fill: none;
+  /* Draw-in animation via stroke-dashoffset */
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: drawPath 0.5s ease forwards;
+}
+
+.loader-path--cross {
+  animation-duration: 0.3s;
+}
+
+@keyframes drawPath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Label */
+.loader-label {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: lowercase;
+  color: rgba(255, 255, 255, 0.35);
+  animation: fadeLabel 0.6s ease forwards 0.9s;
+  opacity: 0;
+}
+
+@keyframes fadeLabel {
+  to { opacity: 1; }
+}
