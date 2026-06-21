@@ -32,6 +32,7 @@
 
 .blog__swiper {
   padding: 10px 0 40px !important;
+  min-height: 480px;
 }
 
 /* ---- Blog Card (styled like project card) ---- */

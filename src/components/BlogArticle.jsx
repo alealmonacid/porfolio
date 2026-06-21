@@ -1,19 +1,17 @@
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
+import { useEffect, useRef, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import './BlogArticle.css'
 
 export default function BlogArticle({ article, onBack }) {
   const pageRef = useRef(null)
+  const [active, setActive] = useState(false)
 
+  // ponytail: standard CSS transitions instead of GSAP
   useEffect(() => {
     window.scrollTo(0, 0)
-    gsap.fromTo(
-      pageRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }
-    )
+    const raf = requestAnimationFrame(() => setActive(true))
+    return () => cancelAnimationFrame(raf)
   }, [])
 
   const formatDate = (dateStr) => {
@@ -26,7 +24,16 @@ export default function BlogArticle({ article, onBack }) {
   }
 
   return (
-    <div className="blog-article-page" ref={pageRef} aria-label={`Artículo: ${article.title}`}>
+    <div
+      className="blog-article-page"
+      ref={pageRef}
+      style={{
+        opacity: active ? 1 : 0,
+        transform: `translate3d(0, ${active ? 0 : '30px'}, 0)`,
+        transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+      }}
+      aria-label={`Artículo: ${article.title}`}
+    >
 
       {/* Fixed top bar */}
       <header className="article-topbar">
@@ -95,18 +102,14 @@ export default function BlogArticle({ article, onBack }) {
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              // Custom renderers for SEO and styling
               h2: ({ children }) => <h2 className="md-h2">{children}</h2>,
               h3: ({ children }) => <h3 className="md-h3">{children}</h3>,
-              // p: do NOT render <pre> inside <p> — override pre separately
               p: ({ children }) => <p className="md-p">{children}</p>,
               ul: ({ children }) => <ul className="md-ul">{children}</ul>,
               ol: ({ children }) => <ol className="md-ol">{children}</ol>,
               li: ({ children }) => <li className="md-li">{children}</li>,
               blockquote: ({ children }) => <blockquote className="md-blockquote">{children}</blockquote>,
-              // pre handles fenced code blocks at block level (never inside <p>)
               pre: ({ children }) => <pre className="md-pre">{children}</pre>,
-              // code handles inline backtick code only
               code: ({ inline, children }) =>
                 inline
                   ? <code className="md-code-inline">{children}</code>
@@ -127,7 +130,6 @@ export default function BlogArticle({ article, onBack }) {
               em: ({ children }) => <em className="md-em">{children}</em>,
               hr: () => <hr className="md-hr" />,
             }}
-
           >
             {article.content}
           </ReactMarkdown>

@@ -58,12 +58,12 @@ export default function About() {
             Mi superpoder es <strong>resolver problemas de forma rápida y efectiva.</strong> Me enfoco en la psicología del usuario, el performance y el SEO, asegurándome de que cada propuesta que pongo sobre la mesa no solo cumpla con el diseño, sino que optimice el tiempo y los resultados del negocio. Me encanta proponer, innovar y construir soluciones reales que a la gente le sirvan en su día a día.
           </p>
 
-          <p className="about__bio">
+          <div className="about__bio">
             <strong>Datos curiosos sobre mí:</strong><br></br>
             <p>El café y la música son el combustible de mi código.</p>
             <p>A veces juego videojuegos</p>
             <p>Soy tan fan de Star Wars que organizo actividades y creo contenido para la comunidad del TCG Star Wars: Unlimited.</p>
-          </p>
+          </div>
 
           {/* Skills */}
           <div className="about__skills" aria-label="Habilidades y tecnologías">

@@ -1,60 +1,42 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import gsap from 'gsap'
 import './ProjectModal.css'
 
-
 export default function ProjectModal({ project, onClose }) {
-  const overlayRef = useRef(null)
-  const panelRef = useRef(null)
+  const [active, setActive] = useState(false)
 
-  // GSAP open animation
+  // ponytail: standard CSS transitions instead of GSAP timelines
   useEffect(() => {
-    const tl = gsap.timeline()
-    tl.fromTo(
-      overlayRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.3, ease: 'power2.out' }
-    ).fromTo(
-      panelRef.current,
-      { opacity: 0, y: 40, scale: 0.96 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'power3.out' },
-      '-=0.15'
-    )
-
-    // Keyboard: close on Escape
+    const raf = requestAnimationFrame(() => setActive(true))
+    
     const handleKey = (e) => {
       if (e.key === 'Escape') handleClose()
     }
     window.addEventListener('keydown', handleKey)
-    return () => window.removeEventListener('keydown', handleKey)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('keydown', handleKey)
+    }
   }, [])
 
   const handleClose = () => {
-    const tl = gsap.timeline({ onComplete: onClose })
-    tl.to(panelRef.current, {
-      opacity: 0,
-      y: 30,
-      scale: 0.96,
-      duration: 0.25,
-      ease: 'power2.in',
-    }).to(overlayRef.current, { opacity: 0, duration: 0.2, ease: 'power2.in' }, '-=0.1')
+    setActive(false)
+    setTimeout(onClose, 300) // Wait for CSS transition
   }
 
   const handleOverlayClick = (e) => {
-    if (e.target === overlayRef.current) handleClose()
+    if (e.target.classList.contains('modal-overlay')) handleClose()
   }
 
   return createPortal(
     <div
-      className="modal-overlay"
-      ref={overlayRef}
+      className={`modal-overlay ${active ? 'active' : ''}`}
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal="true"
       aria-label={`Detalles del proyecto: ${project.title}`}
     >
-      <div className="modal-panel" ref={panelRef}>
+      <div className={`modal-panel ${active ? 'active' : ''}`}>
         {/* Close button */}
         <button
           className="modal-close"
@@ -128,4 +110,3 @@ export default function ProjectModal({ project, onClose }) {
     document.body
   )
 }
-

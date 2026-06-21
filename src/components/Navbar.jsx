@@ -157,11 +157,11 @@ export default function Navbar({ theme, onThemeToggle, onServicesClick }) {
         </button>
       </div>
 
-      {/* Mobile menu */}
       <div
         className={`navbar__mobile-menu ${menuOpen ? 'navbar__mobile-menu--open' : ''}`}
         role="dialog"
         aria-modal="true"
+        aria-label="Menú de navegación móvil"
       >
         <ul role="list">
           {navLinks.map((link) => (

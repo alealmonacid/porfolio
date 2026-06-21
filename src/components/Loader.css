@@ -8,6 +8,8 @@
   align-items: center;
   justify-content: center;
   pointer-events: all;
+  /* ponytail: fade out overlay at the end */
+  animation: fadeOutOverlay 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards 2.6s;
 }
 
 .loader-content {
@@ -17,33 +19,35 @@
   gap: 20px;
 }
 
-/* SVG */
-
-
-
-
-.loader-path--cross {
-  animation-duration: 0.3s;
+.loader-logo {
+  max-width: 120px;
+  opacity: 0;
+  transform: scale(0.3);
+  /* ponytail: animate entry, then pulse drop-shadow */
+  animation: 
+    enterLogo 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+    pulseLogo 0.8s ease-in-out alternate infinite 0.6s;
 }
 
-@keyframes drawPath {
+@keyframes enterLogo {
   to {
-    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-/* Label */
-.loader-label {
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.35em;
-  text-transform: lowercase;
-  color: rgba(255, 255, 255, 0.35);
-  animation: fadeLabel 0.6s ease forwards 0.9s;
-  opacity: 0;
+@keyframes pulseLogo {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+  }
+  100% {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+  }
 }
 
-@keyframes fadeLabel {
-  to { opacity: 1; }
+@keyframes fadeOutOverlay {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

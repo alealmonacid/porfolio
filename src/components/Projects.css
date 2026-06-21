@@ -10,6 +10,7 @@
 
 .projects__swiper {
   padding: 10px 4px 40px !important;
+  min-height: 480px;
 }
 
 /* ---- Project Card ---- */

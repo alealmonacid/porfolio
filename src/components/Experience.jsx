@@ -30,19 +30,27 @@ export default function Experience() {
       const totalScroll = track.scrollWidth - window.innerWidth
       if (totalScroll <= 0) return
 
-      gsap.to(track, {
-        x: -totalScroll,
-        ease: 'none',
+      // ponytail: use timeline to keep section pinned after horizontal scroll finishes
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: () => `+=${totalScroll + 200}`,
+          end: () => `+=${totalScroll + 400}`,
           pin: true,
-          scrub: 1.2,
-          anticipatePin: 1,
+          scrub: true,
           invalidateOnRefresh: true,
         },
       })
+
+      // 1. Scroll horizontally
+      tl.to(track, {
+        x: -totalScroll,
+        ease: 'none',
+        duration: totalScroll,
+      })
+
+      // 2. Remain static/pinned for an extra 400px
+      tl.to({}, { duration: 400 })
     }, sectionRef)
 
     return () => ctx.revert()

@@ -10,6 +10,13 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  /* ponytail: transition classes */
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.modal-overlay.active {
+  opacity: 1;
 }
 
 /* Panel */
@@ -25,6 +32,15 @@
   overflow: hidden;
   position: relative;
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+  /* ponytail: transform transition */
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.modal-panel.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 /* Close button */

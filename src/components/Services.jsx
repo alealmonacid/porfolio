@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-import gsap from 'gsap'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css'
@@ -117,6 +116,7 @@ export default function ServicesPage({ onBack }) {
   const formLoadTimeRef = useRef(Date.now())
   const statsRef = useRef(null)
   const countersAnimated = useRef(false)
+  const [active, setActive] = useState(false)
 
   const [projects, setProjects] = useState([])
   const [openFaq, setOpenFaq] = useState(null)
@@ -138,7 +138,8 @@ export default function ServicesPage({ onBack }) {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    gsap.fromTo(pageRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out' })
+    const raf = requestAnimationFrame(() => setActive(true))
+    return () => cancelAnimationFrame(raf)
   }, [])
 
   // ── SEO: Meta tags + FAQ Schema ──
@@ -183,6 +184,7 @@ export default function ServicesPage({ onBack }) {
   }, [])
 
   // ── Animated stat counters ──
+  // ponytail: native requestAnimationFrame stats count instead of GSAP
   useEffect(() => {
     if (!statsRef.current || countersAnimated.current) return
     const observer = new IntersectionObserver(
@@ -190,18 +192,26 @@ export default function ServicesPage({ onBack }) {
         if (entry.isIntersecting && !countersAnimated.current) {
           countersAnimated.current = true
           const counters = statsRef.current.querySelectorAll('[data-target]')
-          counters.forEach((el) => {
-            const target = parseInt(el.dataset.target, 10)
-            const prefix = el.dataset.prefix || ''
-            const suffix = el.dataset.suffix || ''
-            const obj = { val: 0 }
-            gsap.to(obj, {
-              val: target,
-              duration: 1.8,
-              ease: 'power2.out',
-              onUpdate: () => { el.textContent = `${prefix}${Math.round(obj.val)}${suffix}` },
+          const startTime = performance.now()
+          const duration = 1800
+          
+          const animate = (time) => {
+            const elapsed = time - startTime
+            const progress = Math.min(elapsed / duration, 1)
+            const easeProgress = progress * (2 - progress)
+            
+            counters.forEach((el) => {
+              const target = parseInt(el.dataset.target, 10)
+              const prefix = el.dataset.prefix || ''
+              const suffix = el.dataset.suffix || ''
+              el.textContent = `${prefix}${Math.round(easeProgress * target)}${suffix}`
             })
-          })
+            
+            if (progress < 1) {
+              requestAnimationFrame(animate)
+            }
+          }
+          requestAnimationFrame(animate)
           observer.disconnect()
         }
       },
@@ -212,15 +222,22 @@ export default function ServicesPage({ onBack }) {
   }, [projects])
 
   // Reveal animations
+  // ponytail: native IntersectionObserver reveal instead of GSAP ScrollTrigger
   useEffect(() => {
-    const items = gsap.utils.toArray('.srv-reveal')
-    items.forEach((el, i) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.6, delay: i * 0.08, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%' } }
-      )
-    })
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('srv-reveal--active')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.12 }
+    )
+    const items = document.querySelectorAll('.srv-reveal')
+    items.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
   }, [])
 
   const handleChange = (e) => {
@@ -273,7 +290,7 @@ export default function ServicesPage({ onBack }) {
   }
 
   return (
-    <div className="services-page" ref={pageRef}>
+    <div className="services-page" ref={pageRef} style={{ opacity: active ? 1 : 0, transition: 'opacity 0.5s ease-out' }}>
 
       {/* ── Top bar ── */}
       <header className="srv-topbar">

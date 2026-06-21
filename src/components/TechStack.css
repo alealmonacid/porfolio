@@ -19,6 +19,7 @@
 
 .techstack__swiper {
   padding: 20px 4px !important;
+  min-height: 160px;
 }
 
 /* Individual tech card */
@@ -110,9 +111,4 @@
 
 .techstack__card:hover .techstack__name {
   color: var(--text-primary);
-}
-
-/* GitHub icon is dark — invert to show on dark bg */
-.techstack__card:has(img[alt="GitHub"]) .techstack__icon {
-  filter: invert(1) drop-shadow(2px 2px 0 var(--border));
 }

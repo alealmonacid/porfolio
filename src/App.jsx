@@ -12,7 +12,6 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
 import Loader from './components/Loader'
-import CustomCursor from './components/CustomCursor'
 import ScrollProgress from './components/ScrollProgress'
 import ParallaxLayers from './components/ParallaxLayers'
 // Lazy-loaded pages
@@ -112,36 +111,32 @@ export default function App() {
   }, [])
 
   // Reveal animations (only on main portfolio, after loader)
+  // ponytail: native IntersectionObserver to toggle active class instead of GSAP ScrollTrigger
   useEffect(() => {
     if (!loaderDone || currentArticle || currentPage !== 'home') return
 
-    const sections = gsap.utils.toArray('.reveal-section')
-    sections.forEach((section) => {
-      gsap.fromTo(
-        section,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-        }
-      )
-    })
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-active')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.15 }
+    )
 
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill())
+    const sections = document.querySelectorAll('.reveal-section')
+    sections.forEach((section) => observer.observe(section))
+
+    return () => observer.disconnect()
   }, [loaderDone, currentArticle, currentPage])
 
   // ── Services page ──
   if (currentPage === 'services') {
     return (
       <>
-        <CustomCursor />
         <ScrollProgress />
         <Suspense fallback={
           <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)', color: 'var(--text-muted)', fontSize: '0.9rem', letterSpacing: '0.1em' }}>
@@ -158,7 +153,6 @@ export default function App() {
   if (currentArticle) {
     return (
       <>
-        <CustomCursor />
         <ScrollProgress />
         <Suspense fallback={
           <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)', color: 'var(--text-muted)', fontSize: '0.9rem', letterSpacing: '0.1em' }}>
@@ -177,7 +171,6 @@ export default function App() {
       {!loaderDone && <Loader onComplete={() => setLoaderDone(true)} />}
 
       {/* Global utilities */}
-      <CustomCursor />
       <ScrollProgress />
 
       {/* Main portfolio */}
