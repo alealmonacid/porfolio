@@ -1,0 +1,53 @@
+.parallax-layers {
+  position: fixed;
+  inset: 0;
+  z-index: -1; /* sit behind page content to avoid overlapping block backgrounds */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* small horizontal strip that repeats across X */
+  height: 220px;
+  background-repeat: repeat-x;
+  background-size: auto 120%;
+  background-position: center bottom;
+  will-change: transform, opacity;
+  transform: translate3d(0,0,0);
+}
+
+/* Farthest layer (subtle) */
+.parallax-layer--3 {
+  bottom: 55vh; /* far background sits higher */
+  opacity: 0.55;
+  filter: saturate(0.9) contrast(0.95) blur(2px);
+}
+
+/* Middle layer */
+.parallax-layer--2 {
+  bottom: 35vh;
+  opacity: 0.75;
+  filter: saturate(0.95) contrast(1) blur(0.8px);
+}
+
+/* Closest layer (more contrast) */
+.parallax-layer--1 {
+  bottom: 8vh;
+  height: 280px; /* closest strip a bit taller */
+  opacity: 0.95;
+  filter: saturate(1.05) contrast(1.05);
+}
+
+/* Ensure content overlays layers */
+.app {
+  position: relative;
+  z-index: 2;
+}
+
+/* Slight responsive scaling */
+@media (max-width: 900px) {
+  .parallax-layer { height: 140vh; }
+}

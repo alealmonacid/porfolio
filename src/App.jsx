@@ -14,6 +14,7 @@ import BackToTop from './components/BackToTop'
 import Loader from './components/Loader'
 import CustomCursor from './components/CustomCursor'
 import ScrollProgress from './components/ScrollProgress'
+import ParallaxLayers from './components/ParallaxLayers'
 // Lazy-loaded pages
 const BlogArticle = lazy(() => import('./components/BlogArticle'))
 const ServicesPage = lazy(() => import('./components/Services'))
@@ -182,6 +183,7 @@ export default function App() {
       {/* Main portfolio */}
       <div ref={appRef} className="app" style={{ visibility: loaderDone ? 'visible' : 'hidden' }}>
         <Navbar theme={theme} onThemeToggle={toggleTheme} onServicesClick={openServices} />
+        <ParallaxLayers />
         <main>
           <Hero />
           <About />

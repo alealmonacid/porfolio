@@ -66,30 +66,11 @@
     linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 }
 
-[data-theme="light"] .gradient-overlay-wrapper::before {
-  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
-}
-
-[data-theme="light"] .gradient-overlay-wrapper::after {
-  background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
-}
-
-[data-theme="light"] .blog__slider.gradient-overlay-wrapper::before {
-  background: linear-gradient(to right, var(--bg-secondary) 0%, transparent 100%);
-}
-
-[data-theme="light"] .blog__slider.gradient-overlay-wrapper::after {
-  background: linear-gradient(to left, var(--bg-secondary) 0%, transparent 100%);
-}
-
 [data-theme="light"] .footer {
   background: url(/images/brickBlack.jpg);
   background-size: 50px;
 }
 
-[data-theme="light"] .experience__outer .gradient-overlay-wrapper::before {
-  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
-}
 
 /* --- Reset & Base --- */
 *,
@@ -175,30 +156,6 @@ ul {
 }
 
 /* --- Gradient Side Overlay (shared by timeline, carousels) --- */
-.gradient-overlay-wrapper {
-  position: relative;
-}
-
-.gradient-overlay-wrapper::before,
-.gradient-overlay-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 10%;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.gradient-overlay-wrapper::before {
-  left: 0;
-  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
-}
-
-.gradient-overlay-wrapper::after {
-  right: 0;
-  background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
-}
 
 /* For sections with secondary background (Blog) */
 .blog__slider.gradient-overlay-wrapper::before {
@@ -222,6 +179,26 @@ ul {
   padding: var(--section-padding);
   position: relative;
   z-index: 2;
+}
+
+/* Ensure main app content sits above fixed parallax layers */
+.app {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+.floating-section {
+  position: relative;
+  min-height: 240px;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-section .floating-decor {
+  position: absolute;
+  inset: 0;
 }
 
 /* --- Animations --- */
